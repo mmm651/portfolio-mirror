@@ -1,37 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs').promises;
-const path = require('path');
-
-const dataFilePath = path.join(__dirname, '../data/orbs.json');
-
-async function getOrbsData() {
-  try {
-    const data = await fs.readFile(dataFilePath, 'utf8');
-    return JSON.parse(data);
-  } catch (err) {
-    return { ambientOrbsImages: [] };
-  }
-}
+const Orb = require('../models/orbs');
 
 router.get('/', async (req, res) => {
-  const data = await getOrbsData();
-  res.json(data);
+  try {
+    let data = await Orb.findOne();
+    if (!data) {
+      data = await Orb.create({ ambientOrbsImages: [] });
+    }
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch orbs images' });
+  }
 });
 
 router.post('/', async (req, res) => {
   try {
     const { imageUrl } = req.body;
-    if (!imageUrl) {
-      return res.status(400).json({ error: 'Image URL is required' });
+    if (!imageUrl) return res.status(400).json({ error: 'Image URL is required' });
+
+    let data = await Orb.findOne();
+    if (!data) {
+      data = await Orb.create({ ambientOrbsImages: [imageUrl] });
+    } else {
+      data.ambientOrbsImages.push(imageUrl);
+      await data.save();
     }
 
-    const data = await getOrbsData();
-    data.ambientOrbsImages.push(imageUrl);
-
-    await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), 'utf8');
     res.status(201).json({ message: 'Orb image added successfully!', ambientOrbsImages: data.ambientOrbsImages });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ error: 'Failed to add orb image' });
   }
 });
@@ -39,13 +36,14 @@ router.post('/', async (req, res) => {
 router.delete('/', async (req, res) => {
   try {
     const { imageUrl } = req.body;
-    const data = await getOrbsData();
-    
-    data.ambientOrbsImages = data.ambientOrbsImages.filter(img => img !== imageUrl);
+    let data = await Orb.findOne();
+    if (!data) return res.status(404).json({ error: 'Orbs data not found' });
 
-    await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2), 'utf8');
+    data.ambientOrbsImages = data.ambientOrbsImages.filter(img => img !== imageUrl);
+    await data.save();
+
     res.json({ message: 'Orb image deleted successfully!', ambientOrbsImages: data.ambientOrbsImages });
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ error: 'Failed to delete orb image' });
   }
 });
