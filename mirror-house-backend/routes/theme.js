@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Theme = require('../models/Theme');
+const Theme = require('../models/theme');
 
 router.get('/', async (req, res) => {
   try {
