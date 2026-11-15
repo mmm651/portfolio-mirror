@@ -1,0 +1,30 @@
+[
+  {
+    "id": "01",
+    "category": "DIGITAL INTERFACES",
+    "title": "UI/UX Product Design",
+    "description": "Human-centered interfaces crafted with tactile clarity, fluid micro-interactions, and warm editorial precision.",
+    "tags": ["User Research & Flows", "Interactive Prototypes", "Usability Testing"]
+  },
+  {
+    "id": "02",
+    "category": "BRANDING",
+    "title": "Brand Reflection & Identity",
+    "description": "Building cohesive brand ecosystems that resonate emotionally and visually with your target audience.",
+    "tags": ["Visual Identity", "Brand Guidelines", "Typography Systems"]
+  },
+  {
+    "id": "03",
+    "category": "DEVELOPMENT",
+    "title": "Interactive Web Architecture",
+    "description": "High-performance, scalable web applications built with modern frameworks and meticulous attention to detail.",
+    "tags": ["Frontend Engineering", "API Integration", "Responsive Design"]
+  },
+  {
+    "id": "04",
+    "category": "DESIGN SYSTEMS",
+    "title": "Design Systems & Tokens",
+    "description": "Standardizing UI components and token structures to ensure seamless scaling across platforms and teams.",
+    "tags": ["Component Libraries", "Design Tokens", "Documentation"]
+  }
+]
