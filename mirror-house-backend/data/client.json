@@ -1,0 +1,31 @@
+{
+  "sectionTag": "OUR CLIENTS",
+  "trustedLabel": "Trusted Globally",
+  "title": "Partnerships built on shared vision.",
+  "clientsList": [
+    {
+      "id": 1,
+      "name": "Solstice",
+      "category": "FINTECH"
+    },
+    {
+      "id": 2,
+      "name": "Aurelia",
+      "category": "BOTANICALS"
+    },
+    {
+      "id": 3,
+      "name": "Kanso",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "id": 4,
+      "name": "Vespera",
+      "category": "HOSPITALITY"
+    }
+  ],
+  "testimonial": {
+    "quote": "mirror-house transformed our platform into an effortless, luminous experience our customers love.",
+    "author": "Nadia Al-Mansoor, CPO at Solstice"
+  }
+}
